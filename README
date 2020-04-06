@@ -1,0 +1,4 @@
+This repository contains the Slackbuild scripts maintained on SlackBuilds.org.
+Some (luckybackup, pdfshuffler, fastqc, xournal) have been taking over from 
+previous maintainers  Some scripts provide novel versions of now 'legacy' 
+software (samtools, htslib, bcftools).
