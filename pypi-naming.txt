@@ -1,4 +1,6 @@
-Just a suggestion here regarding any python packages that are distributed
+From Slackbuilds-users list:
+
+"Just a suggestion here regarding any python packages that are distributed
 via pypi. Any package there can be downloaded using this format:
 
 https://pypi.python.org/packages/source/<package first letter>/<package name>/<package name-version.extension>
@@ -7,4 +9,7 @@ So, python-defusedxml would look like:
 
 https://pypi.python.org/packages/source/d/defusedxml/defusedxml-0.6.0.tar.gz
 
-Again, just a suggestion to try and make things a little easier.
+Again, just a suggestion to try and make things a little easier."
+
+
+Well this a great suggestion, as it makes things logical...
