@@ -23,7 +23,7 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=pyCRAC
-VERSION=${VERSION:-1.4.6}
+VERSION=${VERSION:-1.4.8}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -114,6 +114,8 @@ cp $PRGNAM/$PIPENAM/gaussianProcessAnalysis.R $PKG/usr/share/$PRGNAM-$VERSION/$P
 
 # the manual etc.
 mkdir -p $PKG/usr/doc/$PRGNAM-$VERSION
+mv $PKG/usr/$PRGNAM/The_${PRGNAM}_Manual.pdf $PKG/usr/doc/$PRGNAM-$VERSION
+rm -r $PKG/usr/$PRGNAM
 cp -a \
   README.md \
   $CWD/README.tests $CWD/setup_slack.py \

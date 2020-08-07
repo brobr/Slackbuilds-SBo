@@ -1,9 +1,9 @@
 #!/usr/bin/python
 
 __author__      = "Sander Granneman"
-__copyright__   = "Copyright 2019"
-__version__     = "1.4.6"
-__credits__     = ["Sander Granneman","Hywell Dunn Davies"]
+__copyright__   = "Copyright 2020"
+__version__     = "1.4.8"
+__credits__     = ["Sander Granneman","Grzegorz Kudla","Hywell Dunn Davies"]
 __maintainer__  = ["Sander Granneman","Rob van Nues via SlackBuilds.org"]
 __email__       = ["sgrannem@staffmail.ed.ac.uk", "sborg63@disroot.org"]
 __status__      = "Production"
@@ -25,7 +25,7 @@ setup(name='pyCRAC',
 	description='Python NextGen sequencing data processing software',
 	author='Sander Granneman',
 	author_email='sgrannem@staffmail.ed.ac.uk',
-	url='http://sandergranneman.bio.ed.ac.uk/Granneman_Lab/pyCRAC_software.html',
+	url='http://sandergranneman.bio.ed.ac.uk/pycrac-software',
 	packages=['pyCRAC','pyCRAC.Parsers','pyCRAC.Classes','pyCRAC.Methods'],
 	install_requires=['numpy >= 1.5.1', 'cython >=0.19', 'pysam >= 0.6','six >= 1.9.0'],
 	scripts=[
@@ -89,7 +89,9 @@ setup(name='pyCRAC',
 					'tests/test_r_dm.fastq',
 					'tests/indexes.txt',
 					'tests/barcodes.txt',
-					'tests/genes.list'])
+					'tests/genes.list']),
+					('pyCRAC',[
+					'The_pyCRAC_Manual.pdf'])
 				]
 			  )
 

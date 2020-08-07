@@ -11,6 +11,10 @@ sets.
 An R-function used for kinetic CRAC analysis can be found in
 /usr/share/pyCRAC-$VERSION/kinetic_crac_pipeline
 
+Home pages:
+https://git.ecdf.ed.ac.uk/sgrannem/pycrac
+http://sandergranneman.bio.ed.ac.uk/pycrac-software
+
 References
 
 Genome Biol. 2014 Jan 7;15(1):R8. doi: 10.1186/gb-2014-15-1-r8.
