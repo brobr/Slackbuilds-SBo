@@ -1,7 +1,8 @@
 A complete tool to interact with OneDrive on Linux. 
 Built following the UNIX philosophy
 
-What's missing: while local changes are uploaded right away, remote changes are delayed.
+What's missing: while local changes are uploaded right away, remote
+changes are delayed.
 
 After installing the package:
 1) For configuration and Usage, see 
@@ -14,5 +15,6 @@ man onedrive
 /usr/doc/onedrive-$VERSION/docs/Office365.md
 4) If you encounter any bugs you can report them here on Github: 
 https://github.com/abraunegg/onedrive
-(see /usr/doc/onedrive-$VERSION/README.md for more details how to do this)
+(see /usr/doc/onedrive-$VERSION/README.md for more details how to do
+this)
 
