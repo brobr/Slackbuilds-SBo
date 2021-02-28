@@ -46,4 +46,3 @@ mode of operation LocARNA supports the efficient computation of match
 probabilities, probabilistic consistency transformation for more
 accurate multiple alignment, and generates reliability profiles of
 multiple alignments.
-

@@ -68,13 +68,17 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
+# from sources.debian.org/data/main/l/luckybackup/0.5.0-4/debian/patches/01-spelling-error.diff
+patch -p1 < $CWD/01-spelling-error.diff
+#patch -p1 < $CWD/sudo-term.diff
 # luckybackup source contains a qmake (Qt4) project file with some
 # folders hardwired. Let's change them to the Slackware defaults:
 patch -p0 < $CWD/luckybackup.pro.patch
 sed -i "s/PROGVERSION/$VERSION/" ./luckybackup.pro
 sed -i "s,/usr/share/doc/luckybackup/,/usr/doc/luckybackup-$VERSION/,g" src/global.cpp
 
-qmake luckybackup.pro \
+# set qmake to qt5
+qmake-qt5 luckybackup.pro \
   QMAKE_CFLAGS="$SLKCFLAGS" \
   QMAKE_CXXFLAGS="$SLKCFLAGS"
 
