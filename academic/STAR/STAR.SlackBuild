@@ -23,7 +23,7 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=STAR
-VERSION=${VERSION:-2.7.8a}
+VERSION=${VERSION:-2.7.9a}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
@@ -80,9 +80,9 @@ cd source
   mkdir -p $PKG/usr/bin
   install -Dm755 $PRGNAM "$PKG/usr/bin/${PRGNAM}"
 
-  make clean
-  make ${PRGNAM}long CXXFLAGSextra="$CXXFLAGS"
-  install -Dm755 ${PRGNAM}long "$PKG/usr/bin/${PRGNAM}long"
+  #make clean
+  #make ${PRGNAM}long CXXFLAGSextra="$CXXFLAGS"
+  #install -Dm755 ${PRGNAM}long "$PKG/usr/bin/${PRGNAM}long"
 
 cd ..
 
