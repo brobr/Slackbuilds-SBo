@@ -3,7 +3,7 @@
 # Slackware build script for bowtie2
 
 # Copyright 2013-2016 Petar Petrov slackalaxy@gmail.com
-# Copyright 2018-2020 Rob van Nues sborg63@disroot.org
+# Copyright 2018-2021 Rob van Nues sborg63@disroot.org
 #
 # All rights reserved.
 #
@@ -25,7 +25,7 @@
 #  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 PRGNAM=bowtie2
-VERSION=${VERSION:-2.4.2}
+VERSION=${VERSION:-2.4.4}
 BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 
