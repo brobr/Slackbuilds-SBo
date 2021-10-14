@@ -2,8 +2,8 @@
 
 # Slackware build script for bowtie2
 
-# Copyright 2018-2021 Rob van Nues sborg63@disroot.org
 # Copyright 2013-2016 Petar Petrov slackalaxy@gmail.com
+# Copyright 2018-2021 Rob van Nues sborg63@disroot.org
 #
 # All rights reserved.
 #
@@ -38,6 +38,14 @@ if [ -z "$ARCH" ]; then
     arm*) ARCH=arm ;;
        *) ARCH=$( uname -m ) ;;
   esac
+fi
+
+# If the variable PRINT_PACKAGE_NAME is set, then this script will report what
+# the name of the created package would be, and then exit. This information
+# could be useful to other scripts.
+if [ ! -z "${PRINT_PACKAGE_NAME}" ]; then
+  echo "$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE"
+  exit 0
 fi
 
 TMP=${TMP:-/tmp/SBo}
@@ -96,8 +104,6 @@ cp -a \
 # Let's compress the reads and indexes
 gzip $PKG/usr/share/$PRGNAM/example/reads/*.fq
 gzip $PKG/usr/share/$PRGNAM/example/index/*.bt2
-
-rm -f $PKG/{,usr/}lib${LIBDIRSUFFIX}/*.la
 
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true

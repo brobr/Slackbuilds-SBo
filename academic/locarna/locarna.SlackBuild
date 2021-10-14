@@ -2,7 +2,7 @@
 
 # Slackware build script for locarna
 
-# Copyright 2019-2021Rob van Nues <sborg63@disroot.org>
+# Copyright 2019-2021 Rob van Nues <sborg63@disroot.org>
 # All rights reserved.
 #
 # Redistribution and use of this script, with or without modification, is
@@ -36,6 +36,14 @@ if [ -z "$ARCH" ]; then
     arm*) ARCH=arm ;;
        *) ARCH=$( uname -m ) ;;
   esac
+fi
+
+# If the variable PRINT_PACKAGE_NAME is set, then this script will report what
+# the name of the created package would be, and then exit. This information
+# could be useful to other scripts.
+if [ ! -z "${PRINT_PACKAGE_NAME}" ]; then
+  echo "$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE"
+  exit 0
 fi
 
 TMP=${TMP:-/tmp/SBo}
@@ -77,7 +85,6 @@ CXXFLAGS="$SLKCFLAGS" \
   --prefix=/usr \
   --libdir=/usr/lib${LIBDIRSUFFIX} \
   --mandir=/usr/man \
-  --disable-static \
   --docdir=/usr/doc/$PRGNAM-$VERSION \
   --build=$ARCH-slackware-linux
 
@@ -89,8 +96,6 @@ make install DESTDIR=$PKG
 install -d $PKG/usr/lib${LIBDIRSUFFIX}/perl5
 # seems to be 'private': https://github.com/s-will/LocARNA/issues/34
 mv $PKG/usr/lib/perl $PKG/usr/lib${LIBDIRSUFFIX}/perl5/vendor_perl
-
-rm -f $PKG/{,usr/}lib${LIBDIRSUFFIX}/*.la
 
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true

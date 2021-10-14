@@ -37,6 +37,14 @@ if [ -z "$ARCH" ]; then
   esac
 fi
 
+# If the variable PRINT_PACKAGE_NAME is set, then this script will report what
+# the name of the created package would be, and then exit. This information
+# could be useful to other scripts.
+if [ ! -z "${PRINT_PACKAGE_NAME}" ]; then
+  echo "$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE"
+  exit 0
+fi
+
 TMP=${TMP:-/tmp/SBo}
 PKG=$TMP/package-$PRGNAM
 OUTPUT=${OUTPUT:-/tmp}
@@ -70,16 +78,12 @@ find -L . \
  \( -perm 666 -o -perm 664 -o -perm 640 -o -perm 600 -o -perm 444 \
   -o -perm 440 -o -perm 400 \) -exec chmod 644 {} \;
 
-# from sources.debian.org/data/main/l/luckybackup/0.5.0-4/debian/patches/01-spelling-error.diff
-patch -p1 < $CWD/01-spelling-error.diff
-#patch -p1 < $CWD/sudo-term.diff
 # luckybackup source contains a qmake (Qt4) project file with some
 # folders hardwired. Let's change them to the Slackware defaults:
 patch -p0 < $CWD/luckybackup.pro.patch
 sed -i "s/PROGVERSION/$VERSION/" ./luckybackup.pro
 sed -i "s,/usr/share/doc/luckybackup/,/usr/doc/luckybackup-$VERSION/,g" src/global.cpp
 
-# set qmake to qt5
 qmake-qt5 luckybackup.pro \
   QMAKE_CFLAGS="$SLKCFLAGS" \
   QMAKE_CXXFLAGS="$SLKCFLAGS"
@@ -89,8 +93,6 @@ make install INSTALL_ROOT=$PKG
 
 # We don't need this
 rm -rf $PKG/usr/share/menu
-
-rm -f $PKG/{,usr/}lib${LIBDIRSUFFIX}/*.la
 
 find $PKG -print0 | xargs -0 file | grep -e "executable" -e "shared object" | grep ELF \
   | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null || true
