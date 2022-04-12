@@ -11,12 +11,6 @@ supporting AVX extensions, included in intel processors since Sandy
 Bridge (2008) and in AMD cpus since Bulldozer (2011). See the
 Slackbuild if other processors can be supported.
 
-For changes in STAR you can check
-https://github.com/alexdobin/STAR/releases
-For other info, check
-https://github.com/alexdobin/STAR/issues
-https://github.com/alexdobin/STAR/discussions
-
 Reference: https://www.ncbi.nlm.nih.gov/pubmed/23104886
 
 
