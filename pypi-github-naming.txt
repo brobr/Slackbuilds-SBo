@@ -1,0 +1,43 @@
+From Slackbuilds-users list:
+
+"Just a suggestion here regarding any python packages that are distributed
+via pypi. Any package there can be downloaded using this format:
+
+https://pypi.python.org/packages/source/<package first letter>/<package name>/<package name-version.extension>
+
+So, python-defusedxml would look like:
+
+https://pypi.python.org/packages/source/d/defusedxml/defusedxml-0.6.0.tar.gz
+
+Again, just a suggestion to try and make things a little easier."
+
+
+Well this a great suggestion; it makes things logical...
+
+
+
+And for github archives... 
+
+To make Github URLs wget/curl-friendly it's necessary to modify the
+source links found on the tags or releases page.  Example of a tar.gz
+source tarball URL:
+
+  https://github.com/haiwen/seadrive-fuse/archive/refs/tags/v2.0.16.tar.gz
+
+This would be a wget/curl-friendly alternative:
+
+  https://github.com/haiwen/seadrive-fuse/archive/v2.0.16/seadrive-fuse-2.0.16.tar.gz
+
+So given PRGNAM=seadrive-fuse and VERSION=2.0.16, this is a template:
+
+  https://github.com/<repo>/$PRGNAM/archive/(v)$VERSION/$PRGNAM-$VERSION.tar.gz
+
+This works for most Github URLs.  Sometimes `v' needs to be added, other
+times not - it depends on the tag.
+
+for download LINK with curl, use command `curl -LCO LINK`
+
+# Explanation of the arguments
+-L, --location      Follow redirects
+-J, --remote-header-name Use the header-provided filename
+-O, --remote-name   Write output to a file named as the remote file
