@@ -30,10 +30,6 @@ BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
 
-PIPENAM=crac_pipelines
-PIPEVER=master
-#PIPETAG=sgrann
-
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
     i?86) ARCH=i586 ;;
@@ -74,18 +70,9 @@ rm -rf $PKG
 mkdir -p $TMP $PKG $OUTPUT
 cd $TMP
 rm -rf $PRGNAM-$VERSION
-#rm -rf $PIPETAG-$PIPENAM-$PIPEVER
-rm -rf $PIPENAM-$PIPEVER
 
 tar xvf $CWD/$PRGNAM-$VERSION.tar.gz
 cd $PRGNAM-$VERSION
-mkdir $PRGNAM/$PIPENAM
-
-if [[ -f $CWD/$PIPENAM-$PIPEVER.tar.gz ]]; then
- tar xvf $CWD/$PIPENAM-$PIPEVER.tar.gz -C $PRGNAM/$PIPENAM --strip-components=1
-else
- echo "$PIPENAM-$PIPEVER.tar.gz not found"
-fi
 
 #replace setup.py; test.sh
 mv setup.py setup.py.ORIG
@@ -114,7 +101,6 @@ cp -a \
   $CWD/README.tests $CWD/setup_slack.py \
   $CWD/README \
   $PKG/usr/doc/$PRGNAM-$VERSION
-cp -a $PRGNAM/$PIPENAM/README.md $PKG/usr/doc/$PRGNAM-$VERSION/$PIPENAM-README.md
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
 mkdir -p $PKG/install
