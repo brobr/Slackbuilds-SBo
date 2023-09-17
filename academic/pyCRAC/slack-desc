@@ -13,7 +13,7 @@ pyCRAC: cross-linking and cDNA analysis (CRAC) analysis methods.
 pyCRAC: It can be used to remove duplicate reads, tackles directional
 pyCRAC: libraries and reports sense and anti-sense hits.
 pyCRAC:
-pyCRAC: Included is a pipeline that allows analysis of a group of data-sets.
+pyCRAC: 
 pyCRAC:
-pyCRAC: https://bitbucket.org/sgrann/
+pyCRAC: Repository: https://git.ecdf.ed.ac.uk/sgrannem/pycrac
 pyCRAC:
