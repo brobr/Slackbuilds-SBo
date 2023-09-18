@@ -1,7 +1,7 @@
 PRGNAM="ViennaRNA"
 VERSION="2.6.3"
 HOMEPAGE="https://www.tbi.univie.ac.at/RNA"
-DOWNLOAD=""
+DOWNLOAD="UNSUPPORTED"
 MD5SUM=""
 DOWNLOAD_x86_64="https://www.tbi.univie.ac.at/RNA/download/sourcecode/2_6_x/ViennaRNA-2.6.3.tar.gz"
 MD5SUM_x86_64="405b8126efc1dd8f52bfc984d9171c9e"
