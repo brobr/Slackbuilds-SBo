@@ -26,9 +26,15 @@ cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=ViennaRNA
 VERSION=${VERSION:-2.6.3}
-BUILD=${BUILD:-1}
+BUILD=${BUILD:-2}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
+
+# RNAxplorer requires lapacke (which requires lapack that requires blas)
+# but cannot see what blas is used for compiling lapack
+# please adjust $BLAS to the blas installed on your system
+BLAS=openblas
+#BLAS=blas
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
@@ -38,9 +44,6 @@ if [ -z "$ARCH" ]; then
   esac
 fi
 
-# If the variable PRINT_PACKAGE_NAME is set, then this script will report what
-# the name of the created package would be, and then exit. This information
-# could be useful to other scripts.
 if [ ! -z "${PRINT_PACKAGE_NAME}" ]; then
   echo "$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE"
   exit 0
@@ -104,10 +107,7 @@ find -L . \
 # for Z-score filtering via statically linked libsvm:
 # - SVM Z-score filter in RNALfold
 # - GNU Scientific Library for RNApvmin
-# RNAxplorer blocks configuration despite intalling dependencies lapacke and lapack, so ignore it
-# https://github.com/ViennaRNA/ViennaRNA/issues/206
-rnaxplorer=""    ; [ "${RNAXPLORER:-no}" != "yes" ]     && rnaxplorer="--without-rnaxplorer"
-# everything else is enabled
+# everything is enabled here
 cluster=""       ; [ "${CLUSTER:-yes}" != "no" ]        && cluster="--with-cluster"
 kinwalker=""     ; [ "${KINWALKER:-yes}" != "no" ]      && kinwalker="--with-kinwalker"
 # Default enabled features:
@@ -134,9 +134,9 @@ CXXFLAGS="$SLKCFLAGS" \
   --mandir=/usr/man \
   --docdir=/usr/doc/$PRGNAM-$VERSION \
   --build=$ARCH-slackware-linux \
+  --with-blas=$BLAS \
   --with-python2=no \
   --with-doc=no \
-  $rnaxplorer \
   $cluster \
   $kinwalker \
   $forester \
