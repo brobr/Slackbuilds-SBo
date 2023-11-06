@@ -25,16 +25,16 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=ViennaRNA
-VERSION=${VERSION:-2.6.3}
-BUILD=${BUILD:-2}
+VERSION=${VERSION:-2.6.4}
+BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
 
 # RNAxplorer requires lapacke (which requires lapack that requires blas)
 # but cannot see what blas is used for compiling lapack
 # please adjust $BLAS to the blas installed on your system
-BLAS=openblas
-#BLAS=blas
+BLAS=${BLAS:-openblas}
+
 
 if [ -z "$ARCH" ]; then
   case "$( uname -m )" in
@@ -95,8 +95,7 @@ find -L . \
 # - RNAlocmin
 # - Swig (all scripting interfaces)
 # - Perl interface
-# - Python interface
-# - Python 3 interface
+# - Python 3 interface (= Python interface)
 # - Streaming SIMD Extension support
 # in the case of run time/ make/ or configure problems try turning off:
 # - Link Time Optimization (LTO)
@@ -112,7 +111,7 @@ cluster=""       ; [ "${CLUSTER:-yes}" != "no" ]        && cluster="--with-clust
 kinwalker=""     ; [ "${KINWALKER:-yes}" != "no" ]      && kinwalker="--with-kinwalker"
 # Default enabled features:
 forester=""      ; [ "${FORESTER:-yes}" != "no" ]       && forester="--with-forester"
-kinfold=""       ; [ "${KINFOLD:-yes}" != "no" ]        && kinwalk="--with-kinfold"
+kinfold=""       ; [ "${KINFOLD:-yes}" != "no" ]        && kinfold="--with-kinfold"
 rnalocmin=""     ; [ "${RNALOCMIN:-yes}" != "no" ]      && rnalocmin="--with-rnalocmin"
 perl=""          ; [ "${PERL:-yes}" != "no" ]           && perl="--with-perl"
 # python = python3
@@ -137,9 +136,6 @@ CXXFLAGS="$SLKCFLAGS" \
   --with-blas=$BLAS \
   --with-python2=no \
   --with-doc=no \
-  $cluster \
-  $kinwalker \
-  $forester \
   $cluster \
   $kinwalker \
   $forester \
@@ -178,7 +174,7 @@ rm -r $PKG/usr/share/ViennaRNA/bin
 mkdir $PKG/usr/info/
 rm $PKG/usr/share/info/dir
 #gzip and move info file
-gzip -9 $PKG/usr/share/info/*.info
+gzip -9 $PKG/usr/share/info/*.info*
 mv $PKG/usr/share/info/*.info* $PKG/usr/info/
 rmdir $PKG/usr/share/info
 
@@ -202,7 +198,7 @@ if [[ -e $PKG/usr/doc/$PRGNAM-$VERSION/RNAlib-$VERSION.pdf ]]; then
 fi
 
 cp -a \
-  NEWS README.md AUTHORS COPYING THANKS INSTALL CHANGELOG.md license.txt \
+  NEWS README.md AUTHORS COPYING THANKS CHANGELOG.md license.txt \
   $PKG/usr/doc/$PRGNAM-$VERSION
 cat $CWD/$PRGNAM.SlackBuild > $PKG/usr/doc/$PRGNAM-$VERSION/$PRGNAM.SlackBuild
 
@@ -210,6 +206,8 @@ rm -f $PKG/usr/lib*/*.la
 
 mkdir -p $PKG/install
 cat $CWD/slack-desc > $PKG/install/slack-desc
+cat $CWD/doinst.sh > $PKG/install/doinst.sh
+cat $CWD/douninst.sh > $PKG/install/douninst.sh
 
 cd $PKG
 /sbin/makepkg -l y -c n $OUTPUT/$PRGNAM-$VERSION-$ARCH-$BUILD$TAG.$PKGTYPE

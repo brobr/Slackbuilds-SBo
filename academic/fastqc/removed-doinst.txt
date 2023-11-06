@@ -1,0 +1,2 @@
+( cd usr/doc/fastqc-0.11.8 ; rm -rf Help )
+( cd usr/doc/fastqc-0.11.8 ; ln -sf ../../share/java/fastqc/Help Help )
