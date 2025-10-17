@@ -2,7 +2,7 @@
 #
 # SlackBuild for rpy2
 #
-# Copyright 2020-2023 Rob van Nues (sborg63@disroot.org)
+# Copyright 2020-2024 Rob van Nues (sborg63@disroot.org)
 #
 # Redistribution and use of this script, with or without modification, is
 # permitted provided that the following conditions are met:
@@ -24,8 +24,8 @@
 cd $(dirname $0) ; CWD=$(pwd)
 
 PRGNAM=rpy2
-VERSION=${VERSION:-3.5.14}
-BUILD=${BUILD:-2}
+VERSION=${VERSION:-3.6.4}
+BUILD=${BUILD:-1}
 TAG=${TAG:-_SBo}
 PKGTYPE=${PKGTYPE:-tgz}
 
@@ -99,8 +99,9 @@ export LD_LIBRARY_PATH="${RHOMLIB}/lib:${LD_LIBRARY_PATH}"
 echo "LD_LIBRARY_PATH set to ${LD_LIBRARY_PATH}"
 
 # replace deprecated `python3 setup.py build install --root=$PKG`
-# thanks to fourtysixandtwo@sliderr.net
-export PYTHONPATH=/opt/python3.9/site-packages/
+# thanks to fourtysixandtwo
+PYVER=$(python3 -c 'import sys; print("%d.%d" % sys.version_info[:2])')
+export PYTHONPATH=/opt/python$PYVER/site-packages/
 
 python3 -m build --no-isolation
 python3 -m installer -d "$PKG" dist/*.whl
